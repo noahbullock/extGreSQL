@@ -1,0 +1,33 @@
+\name{dbInsertNew}
+\alias{dbInsertNew}
+\title{Insert New Rows}
+\usage{
+  dbInsertNew(conn, table, value, primary.key,
+    colnames = names(value), coltypes, run = TRUE)
+}
+\arguments{
+  \item{conn}{the database connection.}
+
+  \item{table}{the table name, possibly including the
+  schema}
+
+  \item{value}{the local value to write}
+
+  \item{primary.key}{the primary key or unique value
+  constraint}
+
+  \item{colnames}{the column names, if different than the
+  names in \code{value}}
+
+  \item{coltypes}{column types. If missing, an attempt is
+  made to retrieve them from the database.}
+
+  \item{run}{whether to run (\code{TRUE}) or print
+  (\code{FALSE}) the query.}
+}
+\description{
+  Insert only those rows without an existing primary key.
+  NOTE: This can cause a race condition under parallel
+  execution. Use at your own risk.
+}
+
