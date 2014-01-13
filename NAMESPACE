@@ -1,3 +1,4 @@
+export(colFormat)
 export(dbInsert)
 export(dbInsertNew)
 importFrom(RPostgreSQL,dbGetQuery)

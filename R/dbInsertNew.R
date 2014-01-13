@@ -37,21 +37,9 @@ dbInsertNew  <- function(conn, table, value, primary.key, colnames = names(value
     }
     
   }
-  fn <- function(x) {
-    if(("numeric" %in% class(x)) | ("integer" %in% class(x))){
-      x <- as.character(x)
-    } else if ("logical" %in% class(x)){
-      x <- ifelse(x, "true", "false")
-    } else {
-      x <- paste0("'", as.character(x), "'")
-    }
-    # handle NA
-    x <- sapply(x, function(x) ifelse(is.na(x), "NULL", x))
-    return(x)
-  }
   
   for(i in 1:ncol(value)){
-    value[,i] <- fn(value[,i])
+    value[,i] <- colFormat(value[,i])
     
     if(run){
       value[1,i] <- paste0(value[1,i], "::", coltypes[i])
