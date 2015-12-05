@@ -14,6 +14,6 @@ colFormat <- function(x) {
     x <- paste0("'", as.character(x), "'")
   }
   # handle NA. The second argument addresses NA vals that have already been coerced to strings.
-  x <- sapply(x, function(x) ifelse(is.na(x) | x == "'NA'", "NULL", x))
+  x <- sapply(x, function(y) ifelse(is.na(y) | y == "'NA'", "NULL", y))
   return(x)
 }
