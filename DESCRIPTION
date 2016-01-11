@@ -3,7 +3,7 @@ Type: Package
 Title: Extensions to RPostgreSQL
 Version: 1.2
 Date: 2015-12-04
-Author: Me
+Author: Noah Bullock
 Maintainer: Noah <ndbullock@gmail.com>
 Description: Adds convenience load functions to RPostgreSQL
 Depends:
