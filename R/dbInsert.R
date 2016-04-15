@@ -7,6 +7,8 @@
 #' @param value the local value to write
 #' @param colnames the column names, if different than the names in \code{value}
 #' @param statement.only return the statement as a string rather than running the query (default:\code{FALSE})
+#' @return If \code{statement.only = FALSE}, the query is run and the return is \code{NULL}. If \code{statement.only = TRUE}, the \code{INSERT} statement is returned as \code{character}.
+#' @details If \code{statement.only = TRUE}, the function can be run without a \code{conn} argument. This can be useful for debugging, or generating statements that can be modified with additional code.
 #' @importFrom RPostgreSQL dbGetQuery
 #' @export
 dbInsert <- function(conn, table, value, colnames = names(value), statement.only = FALSE){

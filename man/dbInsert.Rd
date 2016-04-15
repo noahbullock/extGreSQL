@@ -4,7 +4,8 @@
 \alias{dbInsert}
 \title{Insert Rows}
 \usage{
-dbInsert(conn, table, value, colnames = names(value))
+dbInsert(conn, table, value, colnames = names(value),
+  statement.only = FALSE)
 }
 \arguments{
 \item{conn}{the database connection.}
@@ -12,8 +13,18 @@ dbInsert(conn, table, value, colnames = names(value))
 \item{table}{the table name, possibly including the schema}
 
 \item{value}{the local value to write}
+
+\item{colnames}{the column names, if different than the names in \code{value}}
+
+\item{statement.only}{return the statement as a string rather than running the query (default:\code{FALSE})}
+}
+\value{
+If \code{statement.only = FALSE}, the query is run and the return is \code{NULL}. If \code{statement.only = TRUE}, the \code{INSERT} statement is returned as \code{character}.
 }
 \description{
 Insert rows with a selection of columns into already existing tables. Unlike \code{dbWriteTable}, this function will insert rows with an incomplete column selection. Seems to handle most datatypes, but no guarantees.
+}
+\details{
+If \code{statement.only = TRUE}, the function can be run without a \code{conn} argument. This can be useful for debugging, or generating statements that can be modified with additional code.
 }
 
