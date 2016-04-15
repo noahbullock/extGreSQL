@@ -1,8 +1,8 @@
 Package: extGreSQL
 Type: Package
 Title: Extensions to RPostgreSQL
-Version: 1.2
-Date: 2015-12-04
+Version: 1.2.1
+Date: 2016-04-15
 Author: Noah Bullock
 Maintainer: Noah <ndbullock@gmail.com>
 Description: Adds convenience load functions to RPostgreSQL
