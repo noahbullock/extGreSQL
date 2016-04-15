@@ -5,10 +5,11 @@
 #' @param conn the database connection.
 #' @param table the table name, possibly including the schema
 #' @param value the local value to write
-#' @colnames the column names, if different than the names in \code{value}
+#' @param colnames the column names, if different than the names in \code{value}
+#' @param statement.only return the statement as a string rather than running the query (default:\code{FALSE})
 #' @importFrom RPostgreSQL dbGetQuery
 #' @export
-dbInsert <- function(conn, table, value, colnames = names(value)){
+dbInsert <- function(conn, table, value, colnames = names(value), statement.only = FALSE){
   stmt <- paste0("INSERT INTO ", table, "(", paste0(colnames, collapse = ", "), ") VALUES ")
   
   for(i in 1:ncol(value)){
@@ -16,5 +17,11 @@ dbInsert <- function(conn, table, value, colnames = names(value)){
   }
   rstmt <- paste0(apply(X=value, MARGIN=1, function(x) paste("(", paste0(as.character(x), collapse = ", "), ")")), collapse = ", ")
   stmt = paste0(stmt, rstmt, ";")
-  dbGetQuery(conn = conn, statement=stmt)
+  
+  if(statement.only){
+    stmt
+  } else {
+    dbGetQuery(conn = conn, statement=stmt)
+  }
+  
 }
