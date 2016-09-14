@@ -12,6 +12,10 @@
 #' @importFrom RPostgreSQL dbGetQuery
 #' @export
 dbInsert <- function(conn, table, value, colnames = names(value), statement.only = FALSE){
+  
+  if(any(c("tbl_df", "tbl") %in% class(value))){
+    value <- as.data.frame(value, stringsAsFactors = FALSE)
+  }
   stmt <- paste0("INSERT INTO ", table, "(", paste0(colnames, collapse = ", "), ") VALUES ")
   
   for(i in 1:ncol(value)){
